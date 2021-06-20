@@ -95,7 +95,31 @@ buffer = 5
 
 grid_original = [[grid[x][y] for y in range(len(grid[0]))] for x in range(len(grid))]
 
+def insert(win, position):
+    i, j = position[1], position[0]
+    myfont = pygame.font.SysFont('Comic Sans MS', 35)
 
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                return
+            if event.type == pygame.KEYDOWN:
+                if grid_original[i - 1][j - 1] != 0:
+                    return
+                if event.key == 48:
+                    grid[i - 1][j - 1] = event.key - 48
+                    pygame.draw.rect(win, background_color, (
+                        position[0] * 50 +  buffer, position[1] * 50 + 2*buffer, 50 - 3 * buffer, 50 - 3 * buffer))
+                    pygame.display.update()
+                if 0 < event.key - 48 < 10:
+                   # pygame.draw.rect(win,background_color,(postiton[0]50 + buffer, postiton[1]50 + buffer,50-2buffer,50-2buffer))
+                   # grid[i - 1][j - 1] = event.key - 48
+                    value = myfont.render(str(event.key - 48), True, (0, 0, 255))
+                    win.blit(value, (position[0] * 50 + 15 , position[1] * 50 + 5))
+                    grid[i - 1][j - 1] = event.key - 48
+                    pygame.display.update()
+                return
+    return
 def main():
     pygame.init()
 
