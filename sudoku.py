@@ -1,13 +1,4 @@
-sudo_bee
-#0651
-i really hate those ledges :]
 
-[
-11:37
-]
-meraj_007
-:
-final!!!
 
 import pygame
 import ctypes
