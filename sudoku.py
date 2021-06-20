@@ -120,29 +120,36 @@ def insert(win, position):
                     pygame.display.update()
                 return
     return
-def main():
+
+  def main():
     pygame.init()
 
-    win = pygame.display.set_mode((width, width))
+    win = pygame.display.set_mode((WIDTH, HEIGHT))
+
     pygame.display.set_caption("SUDOKU")
     win.fill(background_color)
-    myfont = pygame.font.SysFont('Comic Sans MS', 35)
-
+    myfont = pygame.font.SysFont('Comic Sans MS', 24)
+    solnfont = pygame.font.SysFont('Comic Sans MS', 15)
+    checkSolntext = solnfont.render('CheckSolution', True, (0, 0, 0))
 
     for i in range(0, 10):
         if i % 3 == 0:
             pygame.draw.line(win, (0, 0, 0), (50 + 50 * i, 50), (50 + 50 * i, 500), 4)
             pygame.draw.line(win, (0, 0, 0), (50, 50 + 50 * i), (500, 50 + 50 * i), 4)
 
-        pygame.draw.line(win, (0, 0, 0), (50 + 50 * i, 50), (50 + 50 * i, 500), 2)
-        pygame.draw.line(win, (0, 0, 0), (50, 50 + 50 * i), (500, 50 + 50 * i), 2)
+        pygame.draw.line(win, (0, 0, 0), (50 + 50 * i, 50), (50 + 50 * i, 500), 1)
+        pygame.draw.line(win, (0, 0, 0), (50, 50 + 50 * i), (500, 50 + 50 * i), 1)
+    pygame.display.update()
+
+    pygame.draw.rect(win, (15, 140, 140), [225, 600, 125, 40])
+    win.blit(checkSolntext, (225 + 15, 600 + 10))
     pygame.display.update()
 
     for i in range(0, len(grid[0])):
         for j in range(0, len(grid[0])):
             if 0 < grid[i][j] < 10:
-                value = myfont.render(str(grid[i][j]), True, original_grid_element_color)
-                win.blit(value, ((j + 1) * 50 + 15, (i + 1) * 50 + 15))
+                value = myfont.render(str(grid[i][j]), True, (0, 0, 0))
+                win.blit(value, ((j + 1) * 50 + 10, (i + 1) * 50 + 10))
     pygame.display.update()
 
     while True:
@@ -153,7 +160,17 @@ def main():
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 pos = pygame.mouse.get_pos()
                 insert(win, (pos[0] // 50, pos[1] // 50))
-
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mousepos = pygame.mouse.get_pos()
+                if 225 <= mousepos[0] <= 365 and 600 <= mousepos[1] <= 650:
+                    if grid != sudokuGrid:
+                        pprint(grid)
+                        pprint(sudokuGrid)
+                        ctypes.windll.user32.MessageBoxW(0, "Mission Failed, we'll get em next time", "OHHH NO!", 1)
+                    elif grid == sudokuGrid:
+                        pprint(grid)
+                        pprint(sudokuGrid)
+                        ctypes.windll.user32.MessageBoxW(0, "You Won!!!", "CONGRATULATIONS", 1)
 
 
 main()
