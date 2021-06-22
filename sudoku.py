@@ -1,7 +1,7 @@
 import pygame
-import ctypes
-from random import shuffle, randint
-from pprint import pprint
+import ctypes  # for pop-up window
+from random import shuffle, randint   # for shuffling and generating random iterger
+from pprint import pprint    # for print girid in terminal from 1-D array to 2-D array
 
 sudokuGrid = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0],
               [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -85,7 +85,7 @@ def removek(k):
         k = k - 1
 
 
-removek(10)
+removek(10) # for printing x  number of empty block in grid
 
 WIDTH = 550                           # width of game window
 HEIGHT = 700                          # height of game window
@@ -128,30 +128,30 @@ def insert(win, position):                        # created insert function with
     return
 
   def main():
-    pygame.init()
+    pygame.init()   # initialising pygame
 
-    win = pygame.display.set_mode((WIDTH, HEIGHT))
+    win = pygame.display.set_mode((WIDTH, HEIGHT))    # forming window
 
-    pygame.display.set_caption("SUDOKU")
-    win.fill(background_color)
-    myfont = pygame.font.SysFont('Comic Sans MS', 24)
-    solnfont = pygame.font.SysFont('Comic Sans MS', 15)
-    checkSolntext = solnfont.render('CheckSolution', True, (0, 0, 0))
+    pygame.display.set_caption("SUDOKU")      # assigning caption to window
+    win.fill(background_color)      # giving colour to window
+    myfont = pygame.font.SysFont('Comic Sans MS', 24)   # font
+    solnfont = pygame.font.SysFont('Comic Sans MS', 15)   # font for printing CheckSolution term on screen
+    checkSolntext = solnfont.render('CheckSolution', True, (0, 0, 0)) # rendering CheckSolution
 
     for i in range(0, 10):
-        if i % 3 == 0:
-            pygame.draw.line(win, (0, 0, 0), (50 + 50 * i, 50), (50 + 50 * i, 500), 4)
-            pygame.draw.line(win, (0, 0, 0), (50, 50 + 50 * i), (500, 50 + 50 * i), 4)
+        if i % 3 == 0:  
+            pygame.draw.line(win, (0, 0, 0), (50 + 50 * i, 50), (50 + 50 * i, 500), 4) # darker vertical line
+            pygame.draw.line(win, (0, 0, 0), (50, 50 + 50 * i), (500, 50 + 50 * i), 4) # darker horizontal line
 
-        pygame.draw.line(win, (0, 0, 0), (50 + 50 * i, 50), (50 + 50 * i, 500), 1)
-        pygame.draw.line(win, (0, 0, 0), (50, 50 + 50 * i), (500, 50 + 50 * i), 1)
+        pygame.draw.line(win, (0, 0, 0), (50 + 50 * i, 50), (50 + 50 * i, 500), 1) # lighter vertical line
+        pygame.draw.line(win, (0, 0, 0), (50, 50 + 50 * i), (500, 50 + 50 * i), 1) # lighter horizontal line
     pygame.display.update()
 
-    pygame.draw.rect(win, (15, 140, 140), [225, 600, 125, 40])
-    win.blit(checkSolntext, (225 + 15, 600 + 10))
+    pygame.draw.rect(win, (15, 140, 140), [225, 600, 125, 40])  # rectangle for CheckSolution term
+    win.blit(checkSolntext, (225 + 15, 600 + 10)) # blitting checkSolution on screen
     pygame.display.update()
 
-    for i in range(0, len(grid[0])):
+    for i in range(0, len(grid[0])):   # this whole for loop is for populating grid with numbers
         for j in range(0, len(grid[0])):
             if 0 < grid[i][j] < 10:
                 value = myfont.render(str(grid[i][j]), True, (0, 0, 0))
@@ -160,19 +160,23 @@ def insert(win, position):                        # created insert function with
 
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT:  # close the window
                 pygame.quit()
                 return
-            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-                pos = pygame.mouse.get_pos()
-                insert(win, (pos[0] // 50, pos[1] // 50))    # on dividing by 50 i will get the grid number
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mousepos = pygame.mouse.get_pos()
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:  # mousebuttonup means mouse button release after pressing and left click (1 means)
+                pos = pygame.mouse.get_pos() # getting position of mouse
+                insert(win, (pos[0] // 50, pos[1] // 50))    # on dividing by 50 to get the grid indices
+           
+            if event.type == pygame.MOUSEBUTTONDOWN: # means mouse button pressed and it can be any click . it is used for clicking on checksolution term
+                mousepos = pygame.mouse.get_pos() # getting position of click
                 if 225 <= mousepos[0] <= 365 and 600 <= mousepos[1] <= 650:
-                    if grid != sudokuGrid:
+                  
+                  # this whole function is used to check the answer. i.e whether we are correct or wrong
+                  
+                    if grid != sudokuGrid: 
                         pprint(grid)
                         pprint(sudokuGrid)
-                        ctypes.windll.user32.MessageBoxW(0, "Mission Failed, we'll get em next time", "OHHH NO!", 1)
+                        ctypes.windll.user32.MessageBoxW(0, "Mission Failed, we'll get em next time", "OHHH NO!", 1)  # ctype is used for pop window
                     elif grid == sudokuGrid:
                         pprint(grid)
                         pprint(sudokuGrid)
