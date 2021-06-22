@@ -129,7 +129,7 @@ def insert(win, position):
                 return
     return
 
-  def main():
+def main():
     pygame.init()   # initialising pygame
 
     win = pygame.display.set_mode((WIDTH, HEIGHT))    # forming window
