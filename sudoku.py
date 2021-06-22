@@ -1,7 +1,7 @@
 import pygame
 import ctypes  # for pop-up window
 from random import shuffle, randint   # for shuffling and generating random iterger
-from pprint import pprint    # for print girid in terminal from 1-D array to 2-D array
+from pprint import pprint    # to print girid in terminal from 1-D array to 2-D array
 
 sudokuGrid = [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0],
               [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0],
