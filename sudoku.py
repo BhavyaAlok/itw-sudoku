@@ -91,13 +91,13 @@ level = defaultLevel
 
 def levelSelect(level):
     if level == 1:
-        removek(1)
+        removek(3)
     elif level == 2:  # ez difficulty
         removek(10)
     elif level == 3:  # easy difficulty
         removek(20)
     elif level == 4:  # medium difficulty
-        removek(35)
+        removek(30)
 
 
 WIDTH = 550  # width of game window
