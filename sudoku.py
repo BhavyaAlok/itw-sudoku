@@ -92,12 +92,12 @@ level = defaultLevel
 def levelSelect(level):
     if level == 1:
         removek(3)
-    elif level == 2:  # ez difficulty
+    elif level == 2:  # easy difficulty
         removek(10)
-    elif level == 3:  # easy difficulty
+    elif level == 3:  # meduim difficulty
         removek(20)
-    elif level == 4:  # medium difficulty
-        removek(35)
+    elif level == 4:  # hard difficulty
+        removek(30)
 
 
 WIDTH = 550  # width of game window
@@ -110,7 +110,7 @@ def levelSelectwindow():
     pygame.init()
     lswin = pygame.display.set_mode((WIDTH, HEIGHT))  # forming window
 
-    pygame.display.set_caption("Choose Your Level")  # assigning caption to window
+    pygame.display.set_caption("SUDOKU")  # assigning caption to window
     lswin.fill(background_color)  # giving colour to window
 
     lfont = pygame.font.SysFont('Comic Sans MS', 15)
