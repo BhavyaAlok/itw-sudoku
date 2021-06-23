@@ -97,7 +97,7 @@ def levelSelect(level):
     elif level == 3:  # easy difficulty
         removek(20)
     elif level == 4:  # medium difficulty
-        removek(30)
+        removek(35)
 
 
 WIDTH = 550  # width of game window
