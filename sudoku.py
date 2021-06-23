@@ -114,14 +114,14 @@ def levelSelectwindow():
     lswin.fill(background_color)  # giving colour to window
 
     lfont = pygame.font.SysFont('Comic Sans MS', 15)
-    levelchoose = lfont.render('Choose Your Level: ', True, (0, 0, 0))
+    levelchoose = lfont.render('Choose Difficulty Level: ', True, (0, 0, 0))
     level1 = lfont.render('Quick Test', True, (0, 0, 0))
     level2 = lfont.render('Easy', True, (0, 0, 0))
     level3 = lfont.render('Medium', True, (0, 0, 0))
     level4 = lfont.render('Hard', True, (0, 0, 0))
 
 
-    lswin.blit(levelchoose, (225 + 15, 50 + 10))
+    lswin.blit(levelchoose, (200 + 10, 50 + 10))
     pygame.draw.rect(lswin, (255,255,0), [200, 150, 200, 50])
     lswin.blit(level1, (225 + 35, 150 + 10))
     pygame.draw.rect(lswin, (0,255,0), [200, 250, 200, 50])
